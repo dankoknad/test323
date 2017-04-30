@@ -40,7 +40,6 @@ import {
 } from './lib/helpers.js';
 
 import 'bootstrap/dist/css/bootstrap.css';
-import logo from './img/logo.svg';
 import './css/App.css';
 import './css/index.css';
 
@@ -84,16 +83,16 @@ class App extends Component {
 	
 			// log in myself when app start (development)
 
-				// const {loginEmailVal, loginPassVal} = this.state;
-				// const formData = `grant_type=Bearer&email=${loginEmailVal}&password=${loginPassVal}`;
+				const {loginEmailVal, loginPassVal} = this.state;
+				const formData = `grant_type=Bearer&email=${loginEmailVal}&password=${loginPassVal}`;
 
-				// getToken('http://www.scripttic.com:8000/oauth2/token', formData)
-				// .then(token => {
-				// 	this.setState({token});
+				getToken('http://www.scripttic.com:8000/oauth2/token', formData)
+				.then(token => {
+					this.setState({token});
 
-				// 		getLoggedUser(token)
-				// 			.then(user => this.setState({loggedUser: user}))
-				// })
+						getLoggedUser(token)
+							.then(user => this.setState({loggedUser: user}))
+				})
 
 			// remove section above later
   }
@@ -292,8 +291,6 @@ class App extends Component {
 			<Router>
 				<div className="App">
 					<div className="App-header">
-						<img src={logo} className="App-logo" alt="logo" />
-						<h3>Hello Scripttic</h3>
 						<div className="author">Made with <span className="text-danger">♥</span> by <a href="http://dankoknad.github.io/" target="_blank">Danko</a></div>
 					</div>
 					<Navigation 

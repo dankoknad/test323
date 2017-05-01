@@ -291,7 +291,7 @@ class App extends Component {
 			<Router>
 				<div className="App">
 					<div className="App-header">
-						<div className="author">Made with <span className="text-danger">♥</span> by <a href="http://dankoknad.github.io/" target="_blank">Danko</a></div>
+						<div className="author">Made with <span className="text-danger">♥</span> by <a href="http://dankoknad.github.io/" target="_blank">Danko</a> abcd</div>
 					</div>
 					<Navigation 
 						loggedUser={loggedUser}

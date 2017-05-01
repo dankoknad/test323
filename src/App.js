@@ -5,7 +5,8 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
-	Switch
+	Switch,
+	Link
 } from 'react-router-dom';
 import _ from 'lodash';
 
@@ -47,8 +48,8 @@ class App extends Component {
 	state = {
 		articles: [],
 		comments: [],
-		loginEmailVal: 'dankomilutinovic@gmail.com',
-		// loginEmailVal: 'test2@scripttic.com',
+		// loginEmailVal: 'dankomilutinovic@gmail.com',
+		loginEmailVal: 'test@test2.com',
 		loginPassVal: 'Pass123!',
 		token: '',
 		loggedUser: {},
@@ -59,8 +60,8 @@ class App extends Component {
 		signInErrMsg: '',
 		newArticleTitle: '',
 		newArticleContent: '',
-		newCommentTitle: 'Some title',
-		newCommentContent: 'Some content',
+		newCommentTitle: '',
+		newCommentContent: '',
 		isUserAllowedCommentsRemoval: false,
 		windowWidth: window.innerWidth,
 	}
@@ -81,7 +82,7 @@ class App extends Component {
 				})
 			})
 	
-			// log in myself when app start (development)
+			// log in when app start (development)
 
 				// const {loginEmailVal, loginPassVal} = this.state;
 				// const formData = `grant_type=Bearer&email=${loginEmailVal}&password=${loginPassVal}`;
@@ -297,14 +298,19 @@ class App extends Component {
 												const article = _.find(articles, (o) => o.id === Number(match.params.articleId) );
 												return (
 													<Article article={article} >
-														{(loggedUser.id) && 
-															<AddCommentForm
-																newCommentTitle={newCommentTitle}
-																newCommentContent={newCommentContent}
-																handleNewCommentInputs={this.handleNewCommentInputs}
-																postNewComment={this.postNewComment}
-																articleId={article.id}
-															/>
+														{(loggedUser.id)  
+															? <AddCommentForm
+																	newCommentTitle={newCommentTitle}
+																	newCommentContent={newCommentContent}
+																	handleNewCommentInputs={this.handleNewCommentInputs}
+																	postNewComment={this.postNewComment}
+																	articleId={article.id}
+																/>
+															: <div>
+																	<h4>Log In in order to leave a comment</h4>
+																	<p>(pssst! you can use fake email to do it)</p>
+																	<hr/>
+																</div>
 														}
 														<Comments comments={_.filter(comments, (o) => o.article === article.id )}/>
 													</Article>	
@@ -332,7 +338,11 @@ class App extends Component {
 														signInErrMsg={signInErrMsg}
 													/>
 												</LogIn>
-											: <h3 className="text-info">Success! Now you are logged.</h3>
+											: <div>
+													<h3 className="text-info">Success! {loggedUser.firstName}, now you are logged.</h3>
+													<p>You can post new articles and comments (or remove them if you want).</p>
+													<p>Checkout your <Link to="/profile">profile</Link> page to see all of your posts and comments</p>
+												</div>
 										)}
 									/>
 

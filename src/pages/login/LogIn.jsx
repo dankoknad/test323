@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Login = ({handleSubmitLogin, loginEmailVal, loginPassVal, handleLoginEmailVal, handleLoginPassVal, token,children}) => {
+const Login = ({handleSubmitLogin, loginEmailVal, loginPassVal, handleInputChange, token,children}) => {
 	const hasErrorClass = token.length > 36 ? "form-group has-error clearfix" : "form-group clearfix";
 	return (
 		<div>	
@@ -11,13 +11,13 @@ const Login = ({handleSubmitLogin, loginEmailVal, loginPassVal, handleLoginEmail
 					<div className={hasErrorClass}>
 						<div className="col-sm-4">Email address</div>
 						<div className="col-sm-6 col-md-4">
-							<input type="email" className="form-control" value={loginEmailVal} onChange={handleLoginEmailVal} placeholder="Email" required />
+							<input type="email" className="form-control" value={loginEmailVal} onChange={handleInputChange} placeholder="Email" required />
 						</div>
 					</div>
 					<div className={hasErrorClass}>
  						<div className="col-sm-4">Password</div>
 						<div className="col-sm-6 col-md-4">
-							<input type="password" className="form-control" defaultValue={loginPassVal} onChange={handleLoginPassVal} placeholder="Password" required />
+							<input type="password" className="form-control" defaultValue={loginPassVal} onChange={handleInputChange} placeholder="Password" required />
 						</div>
 					</div>
 					<div className="form-group clearfix">

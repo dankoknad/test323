@@ -83,19 +83,25 @@ class App extends Component {
 	
 			// log in myself when app start (development)
 
-				const {loginEmailVal, loginPassVal} = this.state;
-				const formData = `grant_type=Bearer&email=${loginEmailVal}&password=${loginPassVal}`;
+				// const {loginEmailVal, loginPassVal} = this.state;
+				// const formData = `grant_type=Bearer&email=${loginEmailVal}&password=${loginPassVal}`;
 
-				getToken('http://www.scripttic.com:8000/oauth2/token', formData)
-				.then(token => {
-					this.setState({token});
+				// getToken('http://www.scripttic.com:8000/oauth2/token', formData)
+				// .then(token => {
+				// 	this.setState({token});
 
-						getLoggedUser(token)
-							.then(user => this.setState({loggedUser: user}))
-				})
+				// 		getLoggedUser(token)
+				// 			.then(user => this.setState({loggedUser: user}))
+				// })
 
 			// remove section above later
   }
+
+	handleInputChange = (e) => {
+		e.preventDefault();
+		
+		this.setState({[e.target.name]: e.target.value})
+	}
 
 	// login
 	handleSubmitLogin = (e) => {
@@ -117,20 +123,6 @@ class App extends Component {
 			})
 	}
 
-	// TO DO
-	// refator handleLoginEmailVal and handleLoginPassVal
-	handleLoginEmailVal = (e) => {
-		e.preventDefault();
-		
-		this.setState({loginEmailVal: e.target.value.trim()});
-	}
-	
-	handleLoginPassVal = (e) => {
-		e.preventDefault();
-		
-		this.setState({loginPassVal: e.target.value.trim()});
-	}
-
 	// log out
 	handleLogout = (e) => {
 		e.preventDefault();
@@ -146,12 +138,6 @@ class App extends Component {
 	}
 
 	// sign in
-	handleRegistrationInputs = (e) => {
-		e.preventDefault();
-		
-		this.setState({[e.target.name]: e.target.value})
-	}
-
 	handleSubmitRegistration = (e) => {
 		e.preventDefault();
 		const {signInFirstName, signInLastName, signInEmailVal, signInPassVal} = this.state;
@@ -333,12 +319,11 @@ class App extends Component {
 													handleSubmitLogin={this.handleSubmitLogin}
 													loginEmailVal={loginEmailVal}
 													loginPassVal={loginPassVal}
-													handleLoginEmailVal={this.handleLoginEmailVal}
-													handleLoginPassVal={this.handleLoginPassVal}
+													handleInputChange={this.handleInputChange}
 													token={token}
 												>
 													<SignIn
-														handleRegistrationInputs={this.handleRegistrationInputs}
+														handleInputChange={this.handleInputChange}
 														handleSubmitRegistration={this.handleSubmitRegistration}
 														signInFirstName={signInFirstName}
 														signInLastName={signInLastName}

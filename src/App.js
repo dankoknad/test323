@@ -36,6 +36,7 @@ import {
 	logOut,
 	registration,
 	submitNewArticle,
+	removeArticle,
 	submitNewComment,
 	removeComment
 } from './lib/helpers.js';
@@ -211,6 +212,23 @@ class App extends Component {
 			})
 	}
 
+	// remove article 
+	handleArticleRemove = (e, articleId) => {
+		e.preventDefault();
+		const {token, articles} = this.state;
+		const articleIndex = _.findIndex(articles, (o) => o.id === articleId);
+
+		removeArticle(articleId, token)
+			.then(() => {
+				this.setState({
+					articles: [
+						...articles.slice(0, articleIndex),
+						...articles.slice(articleIndex + 1)
+					]
+				});
+			})
+	}
+
 	// add new comment
 	handleNewCommentInputs = (e) => {
 		e.preventDefault();
@@ -364,6 +382,7 @@ class App extends Component {
 													/>
 													<MyArticles
 														articles={_.filter(articles, (o) => o.poster === loggedUser.id )}
+														handleArticleRemove={this.handleArticleRemove}
 													/>
 													<MyComments
 														comments={_.filter(comments, (o) => o.poster === loggedUser.id )}

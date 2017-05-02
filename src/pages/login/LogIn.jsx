@@ -11,7 +11,7 @@ const Login = ({handleSubmitLogin, loginEmailVal, loginPassVal, handleInputChang
 					<div className={hasErrorClass}>
 						<div className="col-sm-4">Email address</div>
 						<div className="col-sm-6 col-md-4">
-							<input type="email" className="form-control" value={loginEmailVal} onChange={handleInputChange} placeholder="Email" required />
+							<input type="email" className="form-control" defaultValue={loginEmailVal} onChange={handleInputChange} placeholder="Email" required />
 						</div>
 					</div>
 					<div className={hasErrorClass}>

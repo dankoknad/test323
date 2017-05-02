@@ -32,6 +32,11 @@
   margin-top: 50px;
   margin-bottom: 50px; }
 
+.glyphicon-remove:hover,
+.glyphicon-remove:focus {
+	text-decoration: none;
+}
+
 .list-anim-enter {
   transform: scaleY(0);
   opacity: 0; }

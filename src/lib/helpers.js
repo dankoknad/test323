@@ -73,6 +73,17 @@ export const submitNewArticle = (token, payload) => {
 	}).then(res => res.json())
 }
 
+// delete article
+export const removeArticle = (articleId, token) => {
+  return fetch(`http://www.scripttic.com:8000/api/v1/article/${articleId}?api_key=Bearer ${token}`, {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
 // post new comment
 export const submitNewComment = (token, payload, articleId) => {
 	return fetch(`http://www.scripttic.com:8000/api/v1/article/${articleId}/comment?api_key=Bearer ${token}`, {

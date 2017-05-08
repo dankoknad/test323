@@ -96,7 +96,7 @@ class App extends Component {
 				// 			.then(user => this.setState({loggedUser: user}))
 				// })
 
-			// remove section above later
+			// remove section above later (in production)
   }
 
 	handleInputChange = (e) => {
@@ -357,7 +357,7 @@ class App extends Component {
 													/>
 												</LogIn>
 											: <div>
-													<h3 className="text-info">Success! {loggedUser.firstName}, now you are logged.</h3>
+													<h3 className="text-info">Success! Welcome {loggedUser.firstName}, now you are logged.</h3>
 													<p>You can post new articles and comments (or remove them if you want).</p>
 													<p>Checkout your <Link to="/profile">profile</Link> page to see all of your posts and comments</p>
 												</div>
